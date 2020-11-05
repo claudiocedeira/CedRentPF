@@ -1,0 +1,84 @@
+Servicio 1
+Overview Request
+Plazo Fijo[
+{
+	Nro Certificado: 809390225094
+	Id Producto: 1000007
+	Capital:8484.0 
+	TNA: 33.06
+	Plazo: 90
+	Fecha constitucion: 2020-10-21
+	Fecha Vto: 2021-01-19
+	divisa: 01
+	},
+	{
+	Nro Certificado: 809390210258
+	Id Producto: 1000042
+	Capital: 131.0
+	TNA: 1.0
+	Plazo: 90
+	Fecha constitucion: 2020-02-18
+	Fecha Vto: 2020-05-18
+	divisa: 01
+	}
+]
+
+Overview Response
+
+[
+TotalizadoPesos
+{
+	importeRenta
+	participacion
+}
+TotalizadoDls
+{
+	importeRenta
+	participacion
+}
+PlazoFijoDetalles[
+{
+	Nro Certificado
+	importeRenta
+	participacion
+	montoAlDia
+},
+{
+	Nro Certificado
+	importeRenta
+	participacion
+	montoAlDia
+}
+]
+]
+
+
+
+Servicio 2
+Detalle UVA Request
+Plazo Fijo[
+	Nro Certificado: 809390210258
+	Id Producto: 1000042
+	Capital: 131.0
+	TNA: 1.0
+	Plazo: 90
+	Fecha constitucion: 2020-10-21
+	Fecha Vto: 2021-01-19
+	divisa: 01
+	TNA Precancelacion: 20.0
+]
+
+	
+Detalle UVA Response
+
+RentaUVA{
+		importeRenta
+		participacion
+		montoAlDia
+}
+RentaPrecancelecion{
+		importeRenta
+		participacion
+		montoAlDia
+}
+

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+  <map>
+    <application id="BIDR_CedRent" alias="Rentabilidad" />
+    <resources>
+      <resource id="BD_CedRent" alias="BaseDeDatos" />
+    </resources>
+  </map>
+</config>

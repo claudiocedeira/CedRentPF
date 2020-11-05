@@ -1,0 +1,72 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>sq-crossnet</Authors>
+    <Description>Template configurado que implementa el POM.</Description>
+    <UserSecretsId>02656dbd-8026-4463-afd6-18505de2b2fa</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="packages\**" />
+    <Content Remove="packages\**" />
+    <EmbeddedResource Remove="packages\**" />
+    <None Remove="packages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="AplicarRescatesForm.cs" />
+    <Compile Remove="AplicarRescatesForm.Designer.cs" />
+    <Compile Remove="CedRentPFtester.cs" />
+    <Compile Remove="CedRentPFtesterForm.cs" />
+    <Compile Remove="CedRentPFtesterForm.Designer.cs" />
+    <Compile Remove="Funciones.cs" />
+    <Compile Remove="Rendimiento12mForm.cs" />
+    <Compile Remove="Rendimiento12mForm.Designer.cs" />
+    <Compile Remove="Rendimiento30dForm.cs" />
+    <Compile Remove="Rendimiento30dForm.Designer.cs" />
+    <Compile Remove="Rendimiento7dForm.cs" />
+    <Compile Remove="Rendimiento7dForm.Designer.cs" />
+    <Compile Remove="RendimientoxdForm.cs" />
+    <Compile Remove="RendimientoxdForm.Designer.cs" />
+    <Compile Remove="RentabilidadRealizacionForm.cs" />
+    <Compile Remove="RentabilidadRealizacionForm.Designer.cs" />
+    <Compile Remove="RentabilidadUltimoDiaForm.cs" />
+    <Compile Remove="RentabilidadUltimoDiaForm.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="App.config" />
+    <Content Remove="packages.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="AplicarRescatesForm.resx" />
+    <EmbeddedResource Remove="CedRentPFtesterForm.resx" />
+    <EmbeddedResource Remove="Rendimiento12mForm.resx" />
+    <EmbeddedResource Remove="Rendimiento30dForm.resx" />
+    <EmbeddedResource Remove="Rendimiento7dForm.resx" />
+    <EmbeddedResource Remove="RendimientoxdForm.resx" />
+    <EmbeddedResource Remove="RentabilidadRealizacionForm.resx" />
+    <EmbeddedResource Remove="RentabilidadUltimoDiaForm.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="256x256.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="cnet-POM" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
+
+</Project>
