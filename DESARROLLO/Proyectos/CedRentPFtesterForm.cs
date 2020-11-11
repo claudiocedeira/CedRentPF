@@ -19,7 +19,7 @@ namespace CedRentPFtester
 
 			PF pF = new PF();
 			pF.NroCertif = 809390225094;
-			pF.Producto.Id = 1000007;
+			pF.ProductoComercial.Id = 1000007;
 			pF.Capital = 8484;
 			pF.Tasa = 33.06;
 			pF.Plazo = 90;
@@ -29,7 +29,7 @@ namespace CedRentPFtester
 			pFs.Add(pF);
 			pF = new CedRentPFtester.PF();
 			pF.NroCertif = 809390210258;
-			pF.Producto.Id = 1000042;
+			pF.ProductoComercial.Id = 1000042;
 			pF.Capital = 131;
 			pF.Tasa = 1;
 			pF.Plazo = 90;
@@ -37,9 +37,24 @@ namespace CedRentPFtester
 			pF.FechaVto = new DateTime(2020, 12, 12);
 			pF.Moneda.Id = "ARS";
 			pFs.Add(pF);
+			pF = new CedRentPFtester.PF();
+			pF.NroCertif = 809390225666;
+			pF.ProductoComercial.Id = 1000007;
+			pF.Capital = 15000;
+			pF.Tasa = 4;
+			pF.Plazo = 30;
+			pF.FechaConst = new DateTime(2020, 11, 1);
+			pF.FechaVto = new DateTime(2020, 12, 1);
+			pF.Moneda.Id = "USD";
+			pFs.Add(pF);
+			List<CedRentPF.Entidades.ProductoComercial> productosComerciales = CedRentPF.RN.ProductoComercial.Leer(Aplicacion.Sesion);
+			for (int i=0; i<pFs.Count; i++)
+            {
+				CedRentPF.Entidades.ProductoComercial productoComercial = productosComerciales.Find(delegate (CedRentPF.Entidades.ProductoComercial p) { return (p.Id == pFs[i].ProductoComercial.Id); });
+				if (productoComercial != null) pFs[i].ProductoComercial.Descr = productoComercial.Descr;
+			}
 			dataGridView.AutoGenerateColumns = false;
 			dataGridView.DataSource = pFs;
-
 			FechatextBox.Text = DateTime.Today.ToString("yyyyMMdd");
 		}
 		private void SalirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -58,7 +73,7 @@ namespace CedRentPFtester
 				{
                     CedRentPF.Entidades.PF pF = new CedRentPF.Entidades.PF();
                     pF.NroCertif = pFs[i].NroCertif;
-                    pF.Producto.Id = pFs[i].Producto.Id;
+                    pF.ProductoComercial.Id = pFs[i].ProductoComercial.Id;
                     pF.Capital = pFs[i].Capital;
                     pF.Tasa = pFs[i].Tasa;
                     pF.Plazo = pFs[i].Plazo;
@@ -77,7 +92,7 @@ namespace CedRentPFtester
 				//Visibilizar columnas de rentabilidad
 				for (int i = 0; i < dataGridView.Rows.Count; i++)
 				{
-					if (dataGridView.Rows[i].Cells["ProductoId"].Value.ToString() != "1000042")
+					if (!pFs[i].ProductoComercial.EsUVAprecancelable)
 					{
 						DataGridViewTextBoxCell oEmptyTextCell = new DataGridViewTextBoxCell();
 						oEmptyTextCell.Value = String.Empty;
@@ -116,25 +131,28 @@ namespace CedRentPFtester
                     bool actualizarGrilla = false;
                     switch (((DataGridViewButtonColumn)senderGrid.Columns[e.ColumnIndex]).Text)
                     {
-                        case "Consulta Renta PFuva":
-                            //switch (tarifarioFiltrado.Minimo[e.RowIndex].Estado.Id)
-                            //{
-                            //    case "Vigente":
-                            //    case "AltaPteAutoriz":
-                            //    case "ModifPteAutoriz":
-                            //        using (ElementoTarifarioMinimoForm elementoForm = new ElementoTarifarioMinimoForm(fechaTarifario, tarifarioFiltrado.Minimo[e.RowIndex], Enum.ModoElementoTarifario.Modificacion))
-                            //        {
-                            //            if (elementoForm.ShowDialog(this) == DialogResult.OK)
-                            //            {
-                            //                actualizarGrilla = true;
-                            //            }
-                            //        }
-                            //        break;
-                            //    default:
-                            //        MessageBox.Show("Opción inválida", "ATENCIÓN");
-                            //        break;
-                            //}
-                            break;
+                        case "Consulta Renta UVA Precancel.":
+							CedRentPF.Entidades.RentaPFUVAPrecancelableFiltro filtro = new CedRentPF.Entidades.RentaPFUVAPrecancelableFiltro();
+							filtro.Fecha = DateTime.ParseExact(FechatextBox.Text, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+							filtro.PF.NroCertif = pFs[e.RowIndex].NroCertif;
+							filtro.PF.ProductoComercial.Id = pFs[e.RowIndex].ProductoComercial.Id;
+							filtro.PF.Capital = pFs[e.RowIndex].Capital;
+							filtro.PF.Tasa = pFs[e.RowIndex].Tasa;
+							filtro.PF.Plazo = pFs[e.RowIndex].Plazo;
+							filtro.PF.FechaConst = pFs[e.RowIndex].FechaConst;
+							filtro.PF.FechaVto = pFs[e.RowIndex].FechaVto;
+							filtro.PF.Moneda.Id = pFs[e.RowIndex].Moneda.Id;
+							filtro.PF.TasaPrecancelacion = 20;
+							CedRentPF.Entidades.RentaPFUVAPrecancelable pf = CedRentPF.RN.RentaPFUVAPrecancelable.Obtener(filtro, Aplicacion.Sesion);
+							ImporteUVATextBox.Text = pf.UVA.Renta.Importe.ToString();
+							ImportePrecancelacionTextBox.Text = pf.Precancelacion.Renta.Importe.ToString();
+							ParticipacionUVATextBox.Text = pf.UVA.Renta.Participacion.ToString();
+							ParticipacionPrecancelacionTextBox.Text = pf.Precancelacion.Renta.Participacion.ToString();
+							MontoAlDiaUVATextBox.Text = pf.UVA.MontoAlDia.ToString();
+							MontoAlDiaPrecancelacionTextBox.Text = pf.Precancelacion.MontoAlDia.ToString();
+
+							RentaPFUVAPrecancelablegroupBox.Visible = true;
+							break;
                         default:
                             break;
                     }

@@ -6,7 +6,7 @@ namespace CedRentPF.Entidades
 	public class PF
 	{
 		protected ulong nroCertif;
-		protected Producto producto;
+		protected ProductoComercial productoComercial;
 		protected CedRentCOMUN.Entidades.Moneda moneda;
 		protected double capital;
 		protected double tasa;
@@ -16,7 +16,7 @@ namespace CedRentPF.Entidades
 
 		public PF()
 		{
-			producto = new Producto();
+			productoComercial = new ProductoComercial();
 			moneda = new CedRentCOMUN.Entidades.Moneda();
 		}
 
@@ -31,15 +31,15 @@ namespace CedRentPF.Entidades
 				return nroCertif;
 			}
 		}
-		public Producto Producto
+		public ProductoComercial ProductoComercial
 		{
 			set
 			{
-				producto = value;
+				productoComercial = value;
 			}
 			get
 			{
-				return producto;
+				return productoComercial;
 			}
 		}
 		public CedRentCOMUN.Entidades.Moneda Moneda
@@ -113,7 +113,14 @@ namespace CedRentPF.Entidades
 		{
 			get
 			{
-				return producto.Id;
+				return productoComercial.Id;
+			}
+		}
+		public string ProductoDescr
+		{
+			get
+			{
+				return productoComercial.Descr;
 			}
 		}
 		public string MonedaId

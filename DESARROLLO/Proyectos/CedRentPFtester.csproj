@@ -71,12 +71,14 @@
     <Compile Include="PF\DB\dbBase.cs" />
     <Compile Include="PF\Entidades\PF.cs" />
     <Compile Include="PF\Entidades\PFuva.cs" />
-    <Compile Include="PF\Entidades\Producto.cs" />
-    <Compile Include="PF\Entidades\RentaPFuva.cs" />
-    <Compile Include="PF\Entidades\RentaPFuvaFiltro.cs" />
+    <Compile Include="PF\Entidades\ProductoComercial.cs" />
+    <Compile Include="PF\Entidades\RentaPFUVAPrecancelable.cs" />
+    <Compile Include="PF\Entidades\RentaPFUVAPrecancelableFiltro.cs" />
+    <Compile Include="PF\RN\ProductoComercial.cs" />
     <Compile Include="PF\RN\RentaCliente.cs" />
     <Compile Include="COMUN\RN\Funciones.cs" />
-    <Compile Include="PF\RN\RentaPFuva.cs" />
+    <Compile Include="PF\RN\RentaPFUVAPrecancelable.cs" />
+    <Compile Include="PF\RN\RentaUVA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CedRentPFtesterForm.resx">
       <DependentUpon>CedRentPFtesterForm.cs</DependentUpon>

@@ -1646,3 +1646,25 @@ insert IndiceUVA values ('20200912', 57.66)
 insert IndiceUVA values ('20200913', 57.66) 
 insert IndiceUVA values ('20200914', 57.66) 
 insert IndiceUVA values ('20200915', 57.77) 
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[ProductoComercial](
+	[ProductoComercialId] [varchar] (7) NOT NULL,
+	[ProductoComercialDescr] [varchar](60) NOT NULL,
+CONSTRAINT [PK_ProductoComercial] PRIMARY KEY CLUSTERED 
+(
+	[ProductoComercialId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+
+insert ProductoComercial values ('1000007', 'Intransferible Tradicional Tasa Fija')
+insert ProductoComercial values ('1000042', 'Intransferible UVA Tasa Adicional Precancelable')
+
